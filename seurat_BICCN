@@ -1,0 +1,34 @@
+Bootstrap: docker
+from: satijalab/seurat:4.0.1
+
+%post
+apt-get update
+apt-get install -y sqlite3 wget
+cd /opt
+## Here document for the install script as specified by the package documentation
+cat <<EOF >>install.R
+install.packages(c("igraph","VennDiagram","UpSetR","stringr","rhdf5","RColorBrewer","png","tidyverse","devtools","tibble","regress","gap","ggplot2","abind","rmarkdown","ggplot2","data.table","igraph","Matrix","reshape2","patchwork","iterators","itertools","future","scales","cowplot","pheatmap","Matrix.utils",),repos="http://cran.us.r-project.org")
+if (!requireNamespace("BiocManager", quietly=TRUE))
+install.packages("BiocManager", repos = "http://cran.us.r-project.org")
+BiocManager::install("esATAC")
+BiocManager::install("parallel")
+BiocManager::install("phyloseq")
+BiocManager::install("doParallel")
+BiocManager::install("DESeq2")
+BiocManager::install("tximport")
+BiocManager::install("biomaRt")
+BiocManager::install("Rsubread")
+BiocManager::install("BiocParallel")
+BiocManager::install("MetaNeighbor")
+BiocManager::install("edgeR")
+BiocManager::install("S4Vectors")
+BiocManager::install("SingleCellExperiment")
+BiocManager::install("apeglm")
+
+
+devtools::install_github("hypertidy/scdb")
+install.packages(c("qtl2","qtl2c nvert"), repos="https://rqtl.org/qtl2cran")
+EOF
+## End of Here document - Run install script then clean up
+Rscript install.R
+rm -f install.R
