@@ -7,7 +7,7 @@ apt-get install -y sqlite3 wget
 cd /opt
 ## Here document for the install script as specified by the package documentation
 cat <<EOF >>install.R
-install.packages(c("igraph","VennDiagram","UpSetR","stringr","rhdf5","RColorBrewer","png","tidyverse","devtools","tibble","regress","gap","ggplot2","abind","rmarkdown","ggplot2","data.table","igraph","Matrix","reshape2","patchwork","iterators","itertools","future","scales","cowplot","pheatmap","Matrix.utils",),repos="http://cran.us.r-project.org")
+install.packages(c("igraph","VennDiagram","UpSetR","stringr","rhdf5","RColorBrewer","png","tidyverse","devtools","tibble","regress","gap","ggplot2","abind","rmarkdown","ggplot2","data.table","igraph","Matrix","reshape2","patchwork","iterators","itertools","future","scales","cowplot","pheatmap","Matrix.utils"),repos="http://cran.us.r-project.org")
 if (!requireNamespace("BiocManager", quietly=TRUE))
 install.packages("BiocManager", repos = "http://cran.us.r-project.org")
 BiocManager::install("esATAC")
